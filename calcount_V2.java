@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class calcount {
+public class calcount_V2 {
 
     static class Food{
         String name;
