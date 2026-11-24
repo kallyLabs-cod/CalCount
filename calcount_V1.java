@@ -22,6 +22,7 @@ public class calcount_V1 {
 
         gui.setVisible(true);
         // variables
+        String name;
         double defiamt;
         int act;
         double age;
@@ -33,6 +34,8 @@ public class calcount_V1 {
         System.out.println("         CALCOUNT");
         System.out.println("+========================+");
         //Ask Age
+        System.out.print("What is your name:");
+        name = sc.nextLine();
         do{
             System.out.print("Enter your age: ");
 
