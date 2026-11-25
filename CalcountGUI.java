@@ -1,27 +1,35 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.font.*;
-import java.awt.event.*;
-import java.awt.color.*;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 
-public class CalcountGUI extends JFrame{
+public class CalcountGUI extends JFrame {
     public CalcountGUI() {
-        setTitle("CalCount");
+        super("CalCount");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500,600);
+
+        JLabel title = new JLabel("CalCount", SwingConstants.CENTER);
+        title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 28));
+
+        JLabel nameLabel = new JLabel("Name:");
+        JTextField nameField = new JTextField(20);
+
+        JPanel form = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        form.add(nameLabel);
+        form.add(nameField);
+
+        JPanel content = new JPanel(new BorderLayout(10, 20));
+        content.setBorder(BorderFactory.createEmptyBorder(24, 24, 24, 24));
+        content.add(title, BorderLayout.NORTH);
+        content.add(form, BorderLayout.CENTER);
+
+        setContentPane(content);
+        setSize(500, 600);
         setLocationRelativeTo(null);
-
-        JLabel tlabel = new JLabel("<html>CalCount</html>", SwingConstants.CENTER);
-        tlabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        tlabel.setFont(new Font("Arial", Font.BOLD, 24));
-        setLayout(new BorderLayout());
-        add(tlabel, BorderLayout.NORTH);
-        JLabel nLabel = new JLabel("<html>Name: </html>");
-        add(nLabel, BorderLayout.WEST);
-        nLabel.setBorder(BorderFactory.createMatteBorder(1,1,0,1, Color.BLACK));
-
     }
-    
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            CalcountGUI frame = new CalcountGUI();
+            frame.setVisible(true);
+        });
+    }
 }

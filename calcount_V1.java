@@ -1,4 +1,7 @@
 import java.util.Scanner;
+
+import javax.swing.SwingUtilities;
+
 import java.util.ArrayList;
 
 public class calcount_V1 {
@@ -17,12 +20,12 @@ public class calcount_V1 {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args){
+        SwingUtilities.invokeLater(() -> {
+            CalcountGUI frame = new CalcountGUI();
+            frame.setVisible(true);
+        });
 
-        CalcountGUI gui = new CalcountGUI();
-
-        gui.setVisible(true);
         // variables
-        String name;
         double defiamt;
         int act;
         double age;
@@ -34,8 +37,6 @@ public class calcount_V1 {
         System.out.println("         CALCOUNT");
         System.out.println("+========================+");
         //Ask Age
-        System.out.print("What is your name:");
-        name = sc.nextLine();
         do{
             System.out.print("Enter your age: ");
 
@@ -98,7 +99,7 @@ public class calcount_V1 {
            
         //Start of the Loop
 
-        String[] weeks = {"Previous Week", "Current Week"};
+        String[] weeks = {"Week 1", "Week 2"};
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
         String[] meals = {"Breakfast", "Lunch", "Dinner"};
 
@@ -309,9 +310,9 @@ public class calcount_V1 {
         System.out.printf("Daily Target Calorie: %.2f kcal\n", deficitAmount(Tdee(bmr(gender, height, weight, age), act), defiamt));
         System.out.printf("Weekly Calories Consumed: %.2f kcal\n", weeklyTotal);
 
-        System.out.printf("Previous Week Total: %.2fkcal%n\n", weeklyTotalPrevious);
+        System.out.printf(weeks[0], " Total: %.2fkcal%n\n", weeklyTotalPrevious);
         if(weeklyTotalCurrent > 0){
-            System.out.printf("Current Week Total: %.2fkcal%n\n", weeklyTotalCurrent);
+            System.out.printf(weeks[1], " Total: %.2fkcal%n\n", weeklyTotalCurrent);
         }else{
             System.out.println("Current Week: No records yet.");
         }
@@ -449,5 +450,24 @@ public class calcount_V1 {
             return 10 * weight + 6.25 * height - 5 * age - 161;
         }
         return 0;
+    };
+    static void bmi(double height, double weight){
+        double heightM = 0;
+        double bmi = 0;
+
+        heightM = height * 100;
+
+        bmi = weight / (heightM * heightM);
+
+        if(bmi < 18.5){
+            System.out.println("Underweight");
+        }else if(bmi > 18.5 && bmi < 24.9){
+            System.out.println("Healthy Weight");
+        }else if(bmi > 25.0 && bmi < 29.9){
+            System.out.println("Overweight");
+        }else{
+            System.out.println("Obese");
+        }
+        
     };
 }
